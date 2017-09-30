@@ -1,6 +1,8 @@
 package com.example.martin.finda;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -44,7 +46,8 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.camera:
-                Toast.makeText(getActivity(), "Camera", Toast.LENGTH_SHORT).show();
+                Intent cameraIntent = new Intent(getActivity(), CameraActivity.class);
+                startActivity(cameraIntent);
                 break;
         }
     }
