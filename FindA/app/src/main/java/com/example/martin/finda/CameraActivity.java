@@ -1,8 +1,10 @@
 package com.example.martin.finda;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +12,10 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -19,13 +24,14 @@ import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
 
-public class CameraActivity extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity implements View.OnClickListener {
 
     SurfaceView cameraView;
     TextView textView;
     CameraSource cameraSource;
 
     final int RequestCameraPermissionId = 1001;
+    private FloatingActionButton saveButton;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -56,6 +62,9 @@ public class CameraActivity extends AppCompatActivity {
 
         cameraView = (SurfaceView) findViewById(R.id.surface_view);
         textView = (TextView) findViewById(R.id.text_view);
+        saveButton = (FloatingActionButton) findViewById(R.id.save_text);
+
+        saveButton.setOnClickListener(this);
 
         TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
 
@@ -123,6 +132,18 @@ public class CameraActivity extends AppCompatActivity {
                     }
                 }
             });
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.save_text:
+                Toast.makeText(this, textView.getText(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, EditTextActivity.class);
+                intent.putExtra("foundText", textView.getText());
+                startActivity(intent);
+                break;
         }
     }
 }
