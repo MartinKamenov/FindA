@@ -18,9 +18,12 @@ import android.widget.Toast;
  */
 public class MenuFragment extends Fragment implements View.OnClickListener {
 
-
     private View root;
+
     private Button cameraBtn;
+    private Button galeryBtn;
+    private Button savedTextBtn;
+    private Button settingsBtn;
 
     public MenuFragment() {
         // Required empty public constructor
@@ -40,6 +43,12 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         super.onResume();
         cameraBtn = root.findViewById(R.id.camera);
         cameraBtn.setOnClickListener(this);
+        galeryBtn = root.findViewById(R.id.gallery);
+        galeryBtn.setOnClickListener(this);
+        savedTextBtn = root.findViewById(R.id.saved_texts);
+        savedTextBtn.setOnClickListener(this);
+        settingsBtn = root.findViewById(R.id.settings);
+        settingsBtn.setOnClickListener(this);
     }
 
     @Override
@@ -48,6 +57,9 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
             case R.id.camera:
                 Intent cameraIntent = new Intent(getActivity(), CameraActivity.class);
                 startActivity(cameraIntent);
+                break;
+            case R.id.gallery:
+                Toast.makeText(getActivity(), "Gallery", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

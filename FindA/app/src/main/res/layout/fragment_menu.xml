@@ -5,21 +5,70 @@
     tools:context="com.example.martin.finda.MenuFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:id="@+id/camera"
-            android:layout_width="215dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="2">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#d00"
-            android:text="Camera"
-            android:textColor="#fff"
-            android:layout_marginTop="23dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-    </RelativeLayout>
+            android:weightSum="2"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/camera"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"
+                android:text="Import from\nCamera"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/gallery"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1"
+                android:background="#009999"
+                android:text="Import from\nGallery"
+                android:textColor="#fff" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/saved_texts"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1"
+                android:background="#00cbff"
+                android:text="Saved\nTexts"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/settings"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1"
+                android:background="#ffd000"
+                android:text="Settings"
+                android:textColor="#fff" />
+        </LinearLayout>
+    </LinearLayout>
+
 
 
 </FrameLayout>
