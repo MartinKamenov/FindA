@@ -1,9 +1,11 @@
-package com.example.martin.finda;
+package com.example.martin.finda.menu;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainMenuActivity extends AppCompatActivity {
+import com.example.martin.finda.R;
+
+public class MenuActivity extends AppCompatActivity {
 
     private MenuFragment mMenuFragment;
 
@@ -13,6 +15,9 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         mMenuFragment = new MenuFragment();
+
+        mMenuFragment.setPresenter(new MenuPresenter());
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, mMenuFragment)

@@ -1,7 +1,10 @@
-package com.example.martin.finda;
+package com.example.martin.finda.text_editor;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.martin.finda.R;
+import com.example.martin.finda.text_editor.EditTextFragment;
 
 public class EditTextActivity extends AppCompatActivity {
 

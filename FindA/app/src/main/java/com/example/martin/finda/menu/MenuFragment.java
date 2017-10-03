@@ -1,4 +1,4 @@
-package com.example.martin.finda;
+package com.example.martin.finda.menu;
 
 
 import android.app.Activity;
@@ -9,14 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Switch;
-import android.widget.Toast;
+
+import com.example.martin.finda.base.BaseContracts;
+import com.example.martin.finda.camera.CameraActivity;
+import com.example.martin.finda.gallery.GalleryActivity;
+import com.example.martin.finda.R;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MenuFragment extends Fragment implements View.OnClickListener {
+public class MenuFragment extends Fragment implements View.OnClickListener
+        , MenuContracts.IMenuView{
 
     private View root;
 
@@ -24,6 +28,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
     private Button galeryBtn;
     private Button savedTextBtn;
     private Button settingsBtn;
+    private BaseContracts.Presenter mPresenter;
 
     public MenuFragment() {
         // Required empty public constructor
@@ -35,12 +40,36 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_menu, container, false);
+        setListeners();
         return root;
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.camera:
+                navigate(getActivity(), CameraActivity.class);
+                break;
+            case R.id.gallery:
+                navigate(getActivity(), GalleryActivity.class);
+                break;
+        }
+    }
+
+    @Override
+    public void setPresenter(BaseContracts.Presenter presenter) {
+        this.mPresenter = presenter;
+    }
+
+
+    @Override
+    public void navigate(Activity currentActivity, Class newActivity) {
+        Intent intent = new Intent(currentActivity, newActivity);
+        startActivity(intent);
+    }
+
+    @Override
+    public void setListeners() {
         cameraBtn = root.findViewById(R.id.camera);
         cameraBtn.setOnClickListener(this);
         galeryBtn = root.findViewById(R.id.gallery);
@@ -49,18 +78,5 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         savedTextBtn.setOnClickListener(this);
         settingsBtn = root.findViewById(R.id.settings);
         settingsBtn.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.camera:
-                Intent cameraIntent = new Intent(getActivity(), CameraActivity.class);
-                startActivity(cameraIntent);
-                break;
-            case R.id.gallery:
-                Toast.makeText(getActivity(), "Gallery", Toast.LENGTH_SHORT).show();
-                break;
-        }
     }
 }
