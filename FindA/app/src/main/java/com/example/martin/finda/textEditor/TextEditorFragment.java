@@ -1,4 +1,4 @@
-package com.example.martin.finda.text_editor;
+package com.example.martin.finda.textEditor;
 
 
 import android.os.Bundle;
@@ -9,18 +9,20 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.martin.finda.R;
+import com.example.martin.finda.base.BaseContracts;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EditTextFragment extends Fragment {
+public class TextEditorFragment extends Fragment implements TextEditorContracts.ITextEditorView {
 
 
     private View root;
     private EditText textContainer;
+    private TextEditorContracts.ITextEditorPresenter mPresenter;
 
-    public EditTextFragment() {
+    public TextEditorFragment() {
         // Required empty public constructor
     }
 
@@ -28,6 +30,8 @@ public class EditTextFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setPresenter(new TextEditorPresenter());
+        mPresenter.subscribe(this);
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_edit_text, container, false);
         textContainer = (EditText) root.findViewById(R.id.text_holder);
@@ -38,4 +42,14 @@ public class EditTextFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.unsubscribe();
+    }
+
+    @Override
+    public void setPresenter(BaseContracts.Presenter presenter) {
+        this.mPresenter = (TextEditorContracts.ITextEditorPresenter) presenter;
+    }
 }

@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".camera.CameraActivity" />
-        <activity android:name=".text_editor.EditTextActivity" />
+        <activity android:name=".textEditor.TextEditorActivity" />
         <activity android:name=".gallery.GalleryActivity"></activity>
     </application>
 

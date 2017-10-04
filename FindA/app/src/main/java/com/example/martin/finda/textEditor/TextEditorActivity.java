@@ -1,25 +1,24 @@
-package com.example.martin.finda.text_editor;
+package com.example.martin.finda.textEditor;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.martin.finda.R;
-import com.example.martin.finda.text_editor.EditTextFragment;
 
-public class EditTextActivity extends AppCompatActivity {
+public class TextEditorActivity extends AppCompatActivity {
 
-    private EditTextFragment mEditTextFragment;
+    private TextEditorFragment mTextEditorFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_text);
 
-        mEditTextFragment = new EditTextFragment();
+        mTextEditorFragment = new TextEditorFragment();
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.text_container, mEditTextFragment)
+                .replace(R.id.text_container, mTextEditorFragment)
                 .commit();
     }
 }

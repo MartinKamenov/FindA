@@ -28,7 +28,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener
     private Button galeryBtn;
     private Button savedTextBtn;
     private Button settingsBtn;
-    private BaseContracts.Presenter mPresenter;
+    private MenuContracts.IMenuPresenter mPresenter;
 
     public MenuFragment() {
         // Required empty public constructor
@@ -38,10 +38,16 @@ public class MenuFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        mPresenter.subscribe(this);
         root = inflater.inflate(R.layout.fragment_menu, container, false);
         setListeners();
         return root;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.unsubscribe();
     }
 
     @Override
@@ -58,7 +64,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void setPresenter(BaseContracts.Presenter presenter) {
-        this.mPresenter = presenter;
+        this.mPresenter = (MenuContracts.IMenuPresenter) presenter;
     }
 
 

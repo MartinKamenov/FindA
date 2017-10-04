@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.martin.finda.text_editor.EditTextActivity">
+    tools:context="com.example.martin.finda.textEditor.TextEditorActivity">
     <FrameLayout
         android:id="@+id/text_container"
         android:layout_width="match_parent"
