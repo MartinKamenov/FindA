@@ -1,6 +1,9 @@
 package com.example.martin.finda.textEditor;
 
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.martin.finda.R;
 import com.example.martin.finda.base.BaseContracts;
@@ -28,6 +32,8 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
     private Button googleSearchBtn;
     private Button copyToClipboardBtn;
     private Button translateBtn;
+    private final String googleUrl = "http://www.google.com/search?q=";
+    private final String saveText = "Copied to clipboard";
 
     public TextEditorFragment() {
         // Required empty public constructor
@@ -77,14 +83,27 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
             case R.id.google_search_btn:
                 searchInGoogle(textContainer.getText().toString());
                 break;
+            case R.id.clipboard_btn:
+                copyTextToClipboard(textContainer.getText().toString());
+                break;
         }
     }
 
     public void searchInGoogle(String text) {
-        String googleurl = "http://www.google.com/search?q=";
-        String url = googleurl + text;
+        String url = googleUrl + text;
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
         startActivity(intent);
+    }
+
+    public void copyTextToClipboard(String text) {
+        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("label", text);
+        clipboard.setPrimaryClip(clip);
+        makeToast(saveText);
+    }
+
+    public void makeToast(String message) {
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 }

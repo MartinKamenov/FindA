@@ -13,5 +13,9 @@ public class TextEditorContracts {
 
     public interface ITextEditorView extends BaseContracts.View {
         void searchInGoogle(String text);
+
+        void copyTextToClipboard(String text);
+
+        void makeToast(String message);
     }
 }
