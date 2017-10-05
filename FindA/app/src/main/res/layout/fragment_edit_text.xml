@@ -5,9 +5,31 @@
     tools:context="com.example.martin.finda.textEditor.TextEditorFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <EditText
-        android:id="@+id/text_holder"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="280dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/text_holder"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"/>
+        <Button
+            android:id="@+id/translate_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Translate text"/>
+        <Button
+            android:id="@+id/clipboard_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Copy to clipboard"/>
+        <Button
+            android:id="@+id/google_search_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search in Google"/>
+    </LinearLayout>
+
+
 
 </FrameLayout>

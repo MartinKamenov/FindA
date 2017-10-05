@@ -12,6 +12,6 @@ public class TextEditorContracts {
     }
 
     public interface ITextEditorView extends BaseContracts.View {
-
+        void searchInGoogle(String text);
     }
 }

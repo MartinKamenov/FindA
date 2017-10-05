@@ -1,22 +1,32 @@
 package com.example.martin.finda.gallery;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.SparseArray;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.martin.finda.R;
+import com.google.android.gms.vision.Frame;
+import com.google.android.gms.vision.text.TextBlock;
+import com.google.android.gms.vision.text.TextRecognizer;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class GalleryActivity extends AppCompatActivity {
 
     private static final int SELECT_PHOTO = 1;
     private ImageView imageView;
+    private ImageView pictureOcrView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +56,41 @@ public class GalleryActivity extends AppCompatActivity {
 
     void useImage(Uri uri)
     {
+
+        Bitmap photo = decodeUriToBitmap(getApplicationContext(), uri);
+        pictureOcrView = new ImageView(getApplicationContext());
+        pictureOcrView.setImageBitmap(photo);
+        Context context = getApplicationContext();
+        TextRecognizer ocrFrame = new TextRecognizer.Builder(context).build();
+        Frame frame = new Frame.Builder().setBitmap(photo).build();
+        if (ocrFrame.isOperational()){
+        }
+        SparseArray<TextBlock> textBlocks = ocrFrame.detect(frame);
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = 0; i < textBlocks.size(); i++) {
+            TextBlock textBlock = textBlocks.get(textBlocks.keyAt(i));
+            stringBuilder.append(textBlock.getValue().toString());
+
+        }
+
+        Toast.makeText(GalleryActivity.this, stringBuilder.toString(), Toast.LENGTH_LONG).show();
+    }
+
+    public static Bitmap decodeUriToBitmap(Context mContext, Uri sendUri) {
+        Bitmap getBitmap = null;
         try {
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-        } catch (IOException e) {
+            InputStream image_stream;
+            try {
+                image_stream = mContext.getContentResolver().openInputStream(sendUri);
+                getBitmap = BitmapFactory.decodeStream(image_stream);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        return getBitmap;
     }
 }

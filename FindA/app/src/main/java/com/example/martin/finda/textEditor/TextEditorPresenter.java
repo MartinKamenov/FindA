@@ -17,4 +17,5 @@ public class TextEditorPresenter implements TextEditorContracts.ITextEditorPrese
     public void unsubscribe() {
         this.view = null;
     }
+
 }
