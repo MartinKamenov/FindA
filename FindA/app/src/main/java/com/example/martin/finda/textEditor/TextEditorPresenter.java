@@ -4,15 +4,22 @@ import android.app.Activity;
 
 import com.example.martin.finda.base.BaseContracts;
 import com.example.martin.finda.http.HttpRequester;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by Martin on 4.10.2017 г..
  */
 
 public class TextEditorPresenter implements TextEditorContracts.ITextEditorPresenter {
+    public final String Url = "https://fierce-crag-61509.herokuapp.com/translate";
     private final HttpRequester httpRequester;
     public TextEditorContracts.ITextEditorView view;
     private Activity activity;
+    private String from = "en";
+    private String to = "bg";
 
     public TextEditorPresenter(Activity activity) {
         this.activity = activity;
@@ -30,7 +37,9 @@ public class TextEditorPresenter implements TextEditorContracts.ITextEditorPrese
     }
 
     public void translateText(String text) {
-        this.httpRequester.get("https://fierce-crag-61509.herokuapp.com/users");
+        String json = String.format("{\"txt\":\"%s\",\"from\":\"%s\",\"to\":\"%s\"}", text, from, to);
+
+        this.httpRequester.post(Url, json);
     }
 
 }

@@ -8,8 +8,10 @@ import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -19,14 +21,20 @@ import okhttp3.Response;
 public class HttpRequester {
     private final OkHttpClient client;
     private final Activity activity;
+    private MediaType JSON;
 
     public HttpRequester(Activity activity) {
         this.activity = activity;
         this.client = new OkHttpClient();
     }
 
-    public void get(String url) {
-        Request request = new Request.Builder().url(url)
+    public void post(String url, String bodyText) {
+        JSON = MediaType.parse("application/json; charset=utf-8");
+        RequestBody body = RequestBody.create(JSON, bodyText);
+        Request request = new Request.Builder()
+                .post(body)
+                .addHeader("Content-Type","application/json")
+                .url(url)
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -37,12 +45,12 @@ public class HttpRequester {
 
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
-                handleGet(response);
+                handlePost(response);
             }
         });
     }
 
-    public void handleGet(final Response response) {
+    public void handlePost(final Response response) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
