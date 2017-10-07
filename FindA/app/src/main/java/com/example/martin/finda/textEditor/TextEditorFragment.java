@@ -1,6 +1,7 @@
 package com.example.martin.finda.textEditor;
 
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -43,7 +44,6 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        setPresenter(new TextEditorPresenter());
         mPresenter.subscribe(this);
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_edit_text, container, false);
@@ -62,6 +62,7 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
         mPresenter.unsubscribe();
     }
 
+    @Override
     public void setListeners() {
         this.googleSearchBtn = root.findViewById(R.id.google_search_btn);
         this.copyToClipboardBtn = root.findViewById(R.id.clipboard_btn);
@@ -79,16 +80,21 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
 
     @Override
     public void onClick(View view) {
+        String text = textContainer.getText().toString();
         switch (view.getId()) {
             case R.id.google_search_btn:
-                searchInGoogle(textContainer.getText().toString());
+                searchInGoogle(text);
                 break;
             case R.id.clipboard_btn:
-                copyTextToClipboard(textContainer.getText().toString());
+                copyTextToClipboard(text);
+                break;
+            case R.id.translate_btn:
+                translateText(text);
                 break;
         }
     }
 
+    @Override
     public void searchInGoogle(String text) {
         String url = googleUrl + text;
         Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -96,6 +102,7 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
         startActivity(intent);
     }
 
+    @Override
     public void copyTextToClipboard(String text) {
         ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("label", text);
@@ -103,7 +110,13 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
         makeToast(saveText);
     }
 
+    @Override
     public void makeToast(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void translateText(String text) {
+        mPresenter.translateText(text);
     }
 }

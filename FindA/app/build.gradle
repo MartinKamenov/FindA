@@ -35,4 +35,5 @@ dependencies {
     compile 'com.android.support:design:26.+'
     testCompile 'junit:junit:4.12'
     apt 'com.google.dagger:dagger-compiler:2.6'
+    compile 'com.squareup.okhttp3:okhttp:3.9.0'
 }

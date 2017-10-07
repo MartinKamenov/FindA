@@ -1,5 +1,7 @@
 package com.example.martin.finda.textEditor;
 
+import android.app.Activity;
+
 import com.example.martin.finda.base.BaseContracts;
 
 /**
@@ -8,7 +10,7 @@ import com.example.martin.finda.base.BaseContracts;
 
 public class TextEditorContracts {
     public interface ITextEditorPresenter extends BaseContracts.Presenter {
-
+        void translateText(String text);
     }
 
     public interface ITextEditorView extends BaseContracts.View {
@@ -17,5 +19,9 @@ public class TextEditorContracts {
         void copyTextToClipboard(String text);
 
         void makeToast(String message);
+
+        void translateText(String text);
+
+        void setListeners();
     }
 }
