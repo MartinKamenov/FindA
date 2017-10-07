@@ -38,6 +38,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        this.setPresenter(new MenuPresenter());
         mPresenter.subscribe(this);
         root = inflater.inflate(R.layout.fragment_menu, container, false);
         setListeners();

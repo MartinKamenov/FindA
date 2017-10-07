@@ -29,6 +29,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Search in Google"/>
+        <Button
+            android:id="@+id/menu_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Back to menu"/>
     </LinearLayout>
 
 

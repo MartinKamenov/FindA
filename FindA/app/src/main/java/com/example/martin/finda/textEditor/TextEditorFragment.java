@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.martin.finda.R;
 import com.example.martin.finda.base.BaseContracts;
+import com.example.martin.finda.menu.MenuActivity;
 
 
 /**
@@ -33,6 +34,7 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
     private Button googleSearchBtn;
     private Button copyToClipboardBtn;
     private Button translateBtn;
+    private Button toMenuBtn;
     private final String googleUrl = "http://www.google.com/search?q=";
     private final String saveText = "Copied to clipboard";
 
@@ -44,6 +46,7 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setPresenter(new TextEditorPresenter((TextEditorActivity)getActivity()));
         mPresenter.subscribe(this);
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_edit_text, container, false);
@@ -67,10 +70,12 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
         this.googleSearchBtn = root.findViewById(R.id.google_search_btn);
         this.copyToClipboardBtn = root.findViewById(R.id.clipboard_btn);
         this.translateBtn = root.findViewById(R.id.translate_btn);
+        this.toMenuBtn = root.findViewById(R.id.menu_btn);
 
         googleSearchBtn.setOnClickListener(this);
         copyToClipboardBtn.setOnClickListener(this);
         translateBtn.setOnClickListener(this);
+        toMenuBtn.setOnClickListener(this);
     }
 
     @Override
@@ -91,6 +96,9 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
             case R.id.translate_btn:
                 translateText(text);
                 break;
+            case R.id.menu_btn:
+                returnToMenu();
+                break;
         }
     }
 
@@ -110,6 +118,11 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
         makeToast(saveText);
     }
 
+    private void returnToMenu() {
+        Intent intent = new Intent(getActivity(), MenuActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void makeToast(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
@@ -124,7 +137,7 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
         mPresenter.translateText(text);
     }
 
-    public void showSpinner() {
+    private void showSpinner() {
         getActivity().findViewById(R.id.text_editor_container).setVisibility(View.GONE);
         getActivity().findViewById(R.id.spinner_container).setVisibility(View.VISIBLE);
     }

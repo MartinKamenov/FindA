@@ -16,8 +16,6 @@ public class MenuActivity extends AppCompatActivity {
 
         mMenuFragment = new MenuFragment();
 
-        mMenuFragment.setPresenter(new MenuPresenter());
-
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, mMenuFragment)

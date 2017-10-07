@@ -27,8 +27,6 @@ public class TextEditorActivity extends AppCompatActivity {
 
         mTextEditorFragment = new TextEditorFragment();
 
-        mTextEditorFragment.setPresenter(new TextEditorPresenter(this));
-
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.text_container, mTextEditorFragment)
