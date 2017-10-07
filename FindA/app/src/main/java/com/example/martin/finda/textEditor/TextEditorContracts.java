@@ -11,6 +11,10 @@ import com.example.martin.finda.base.BaseContracts;
 public class TextEditorContracts {
     public interface ITextEditorPresenter extends BaseContracts.Presenter {
         void translateText(String text);
+
+        String getOriginalText();
+
+        void setOriginalText(String text);
     }
 
     public interface ITextEditorView extends BaseContracts.View {

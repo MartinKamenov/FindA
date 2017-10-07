@@ -9,31 +9,122 @@
         android:id="@+id/text_editor_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <EditText
-            android:id="@+id/text_holder"
+        android:orientation="vertical"
+        android:weightSum="2">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="280dp"/>
-        <Button
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <EditText
+                android:background="#fff"
+                android:id="@+id/text_holder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <!--<Button
             android:id="@+id/translate_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Translate text"/>
+            android:text="Translate text"
+            android:background="@color/colorAccent"
+            android:textColor="#fff"
+            android:textStyle="bold"/>
         <Button
             android:id="@+id/clipboard_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Copy to clipboard"/>
+            android:text="Copy to clipboard"
+            android:background="#009999"
+            android:textColor="#fff"
+            android:textStyle="bold"/>
         <Button
             android:id="@+id/google_search_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Search in Google"/>
+            android:text="Search in Google"
+            android:background="#00cbff"
+            android:textColor="#fff"
+            android:textStyle="bold"/>
         <Button
             android:id="@+id/menu_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Back to menu"/>
+            android:text="Back to menu"
+            android:background="#ffd000"
+            android:textColor="#fff"
+            android:textStyle="bold"/>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/translate_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="1"
+                    android:background="@color/colorAccent"
+                    android:text="Translate text"
+                    android:textColor="#fff"
+                    android:textStyle="bold"/>
+
+                <Button
+                    android:id="@+id/clipboard_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="1"
+                    android:background="#009999"
+                    android:text="Copy to clipboard"
+                    android:textColor="#fff"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/google_search_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="1"
+                    android:background="#00cbff"
+                    android:text="Search in Google"
+                    android:textColor="#fff"
+                    android:textStyle="bold"/>
+
+                <Button
+                    android:id="@+id/menu_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="1"
+                    android:background="#ffd000"
+                    android:text="Back to menu"
+                    android:textColor="#fff"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 

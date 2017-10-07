@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 public class TextEditorPresenter implements TextEditorContracts.ITextEditorPresenter {
     public final String Url = "https://fierce-crag-61509.herokuapp.com/translate";
+    private String originalText;
     private final HttpRequester httpRequester;
     public TextEditorContracts.ITextEditorView view;
     private TextEditorActivity activity;
@@ -37,9 +38,18 @@ public class TextEditorPresenter implements TextEditorContracts.ITextEditorPrese
     }
 
     public void translateText(String text) {
+        setOriginalText(text);
         String json = String.format("{\"txt\":\"%s\",\"from\":\"%s\",\"to\":\"%s\"}", text, from, to);
 
         this.httpRequester.post(Url, json);
+    }
+
+    public void setOriginalText(String text) {
+        this.originalText = text;
+    }
+
+    public String getOriginalText() {
+        return this.originalText;
     }
 
 }

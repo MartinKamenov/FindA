@@ -2,6 +2,8 @@ package com.example.martin.finda.http;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.martin.finda.R;
@@ -59,12 +61,17 @@ public class HttpRequester {
             @Override
             public void run() {
                 try {
-                    Toast.makeText(activity, response.body().string(), Toast.LENGTH_SHORT).show();
+                    EditText area = (EditText)activity.findViewById(R.id.text_holder);
+                    area.setText(response.body().string());
+                    Button button = (Button)activity.findViewById(R.id.translate_btn);
+                    button.setText("Show original");
+                    //Toast.makeText(activity, response.body().string(), Toast.LENGTH_SHORT).show();
                     activity.findViewById(R.id.spinner_container).setVisibility(View.GONE);
                     activity.findViewById(R.id.text_editor_container).setVisibility(View.VISIBLE);
                 } catch (IOException e) {
                     Toast.makeText(activity, "something went wrong!", Toast.LENGTH_SHORT).show();
-                    //findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+                    activity.findViewById(R.id.spinner_container).setVisibility(View.GONE);
+                    activity.findViewById(R.id.text_editor_container).setVisibility(View.VISIBLE);
                 }
             }
         });

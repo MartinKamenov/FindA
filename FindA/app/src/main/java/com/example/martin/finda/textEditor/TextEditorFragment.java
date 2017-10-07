@@ -94,7 +94,13 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
                 copyTextToClipboard(text);
                 break;
             case R.id.translate_btn:
-                translateText(text);
+                this.translateBtn = root.findViewById(R.id.translate_btn);
+                String textInButton = translateBtn.getText().toString();
+                if(textInButton.contains("text")) {
+                    translateText(text);
+                } else {
+                    showOriginalText();
+                }
                 break;
             case R.id.menu_btn:
                 returnToMenu();
@@ -140,5 +146,12 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
     private void showSpinner() {
         getActivity().findViewById(R.id.text_editor_container).setVisibility(View.GONE);
         getActivity().findViewById(R.id.spinner_container).setVisibility(View.VISIBLE);
+    }
+
+    private void showOriginalText() {
+        Button button = (Button)root.findViewById(R.id.translate_btn);
+        button.setText("Translate text");
+        EditText area = (EditText)root.findViewById(R.id.text_holder);
+        area.setText(this.mPresenter.getOriginalText());
     }
 }
