@@ -117,6 +117,15 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
 
     @Override
     public void translateText(String text) {
+        if(text.length() == 0) {
+            Toast.makeText(getActivity(), "Must have some text", Toast.LENGTH_SHORT).show();
+        }
+        showSpinner();
         mPresenter.translateText(text);
+    }
+
+    public void showSpinner() {
+        getActivity().findViewById(R.id.text_editor_container).setVisibility(View.GONE);
+        getActivity().findViewById(R.id.spinner_container).setVisibility(View.VISIBLE);
     }
 }

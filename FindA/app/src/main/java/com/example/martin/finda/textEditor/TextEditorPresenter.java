@@ -17,11 +17,11 @@ public class TextEditorPresenter implements TextEditorContracts.ITextEditorPrese
     public final String Url = "https://fierce-crag-61509.herokuapp.com/translate";
     private final HttpRequester httpRequester;
     public TextEditorContracts.ITextEditorView view;
-    private Activity activity;
+    private TextEditorActivity activity;
     private String from = "en";
     private String to = "bg";
 
-    public TextEditorPresenter(Activity activity) {
+    public TextEditorPresenter(TextEditorActivity activity) {
         this.activity = activity;
         this.httpRequester = new HttpRequester(this.activity);
     }

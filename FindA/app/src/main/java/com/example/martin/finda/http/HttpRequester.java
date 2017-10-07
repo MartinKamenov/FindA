@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.martin.finda.R;
+import com.example.martin.finda.textEditor.TextEditorActivity;
+import com.example.martin.finda.textEditor.TextEditorFragment;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -20,10 +24,10 @@ import okhttp3.Response;
 
 public class HttpRequester {
     private final OkHttpClient client;
-    private final Activity activity;
+    private final TextEditorActivity activity;
     private MediaType JSON;
 
-    public HttpRequester(Activity activity) {
+    public HttpRequester(TextEditorActivity activity) {
         this.activity = activity;
         this.client = new OkHttpClient();
     }
@@ -56,7 +60,8 @@ public class HttpRequester {
             public void run() {
                 try {
                     Toast.makeText(activity, response.body().string(), Toast.LENGTH_SHORT).show();
-                    //findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+                    activity.findViewById(R.id.spinner_container).setVisibility(View.GONE);
+                    activity.findViewById(R.id.text_editor_container).setVisibility(View.VISIBLE);
                 } catch (IOException e) {
                     Toast.makeText(activity, "something went wrong!", Toast.LENGTH_SHORT).show();
                     //findViewById(R.id.loadingPanel).setVisibility(View.GONE);

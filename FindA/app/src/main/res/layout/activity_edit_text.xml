@@ -9,5 +9,25 @@
         android:id="@+id/text_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></FrameLayout>
+    <LinearLayout
+        android:id="@+id/spinner_container"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+        <ProgressBar
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:indeterminate="true"
+            android:indeterminateTintMode="src_atop"
+            android:indeterminateTint="@color/colorAccent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="45px"
+            android:text="Translating text..."/>
+    </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>
