@@ -65,7 +65,7 @@ public class HttpRequester {
                     area.setText(response.body().string());
                     Button button = (Button)activity.findViewById(R.id.translate_btn);
                     button.setText("Show original");
-                    //Toast.makeText(activity, response.body().string(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Text is translated", Toast.LENGTH_SHORT).show();
                     activity.findViewById(R.id.spinner_container).setVisibility(View.GONE);
                     activity.findViewById(R.id.text_editor_container).setVisibility(View.VISIBLE);
                 } catch (IOException e) {

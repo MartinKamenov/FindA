@@ -1,6 +1,7 @@
 package com.example.martin.finda.textEditor;
 
 import android.app.Activity;
+import android.widget.Toast;
 
 import com.example.martin.finda.base.BaseContracts;
 import com.example.martin.finda.http.HttpRequester;
@@ -39,7 +40,7 @@ public class TextEditorPresenter implements TextEditorContracts.ITextEditorPrese
 
     public void translateText(String text) {
         setOriginalText(text);
-        String json = String.format("{\"txt\":\"%s\",\"from\":\"%s\",\"to\":\"%s\"}", text, from, to);
+        String json = String.format("{\"txt\":\"%s\",\"from\":\"%s\",\"to\":\"%s\"}", text.replace("\n", "\\n"), from, to);
 
         this.httpRequester.post(Url, json);
     }

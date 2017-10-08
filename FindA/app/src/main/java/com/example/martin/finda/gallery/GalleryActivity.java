@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.martin.finda.R;
+import com.example.martin.finda.textEditor.TextEditorActivity;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
@@ -58,6 +59,11 @@ public class GalleryActivity extends AppCompatActivity {
     {
 
         Bitmap photo = decodeUriToBitmap(getApplicationContext(), uri);
+        if(photo==null) {
+            Intent intent = new Intent(this, TextEditorActivity.class);
+            intent.putExtra("foundText", "No text");
+            startActivity(intent);
+        }
         pictureOcrView = new ImageView(getApplicationContext());
         pictureOcrView.setImageBitmap(photo);
         Context context = getApplicationContext();
@@ -72,10 +78,14 @@ public class GalleryActivity extends AppCompatActivity {
         for (int i = 0; i < textBlocks.size(); i++) {
             TextBlock textBlock = textBlocks.get(textBlocks.keyAt(i));
             stringBuilder.append(textBlock.getValue().toString());
+            stringBuilder.append('\n');
 
         }
 
         Toast.makeText(GalleryActivity.this, stringBuilder.toString(), Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, TextEditorActivity.class);
+        intent.putExtra("foundText", stringBuilder.toString());
+        startActivity(intent);
     }
 
     public static Bitmap decodeUriToBitmap(Context mContext, Uri sendUri) {
