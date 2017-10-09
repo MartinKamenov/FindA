@@ -2,6 +2,7 @@ package com.example.martin.finda.textEditor;
 
 import android.app.Activity;
 
+import com.example.martin.finda.FindAApplication;
 import com.example.martin.finda.base.BaseContracts;
 
 /**
@@ -27,5 +28,7 @@ public class TextEditorContracts {
         void translateText(String text);
 
         void setListeners();
+
+        FindAApplication getApp();
     }
 }

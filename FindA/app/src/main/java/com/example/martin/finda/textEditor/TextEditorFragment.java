@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.martin.finda.FindAApplication;
 import com.example.martin.finda.R;
 import com.example.martin.finda.base.BaseContracts;
 import com.example.martin.finda.menu.MenuActivity;
@@ -76,6 +77,11 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
         copyToClipboardBtn.setOnClickListener(this);
         translateBtn.setOnClickListener(this);
         toMenuBtn.setOnClickListener(this);
+    }
+
+    @Override
+    public FindAApplication getApp() {
+        return (FindAApplication) getActivity().getApplication();
     }
 
     @Override

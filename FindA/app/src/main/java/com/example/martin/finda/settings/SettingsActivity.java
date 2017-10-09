@@ -23,26 +23,11 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        GenericCacheRepository<SettingsConfiguration, Long> repo =
-                getApp().getSettingsConfigurationRepository();
+        SettingsFragment mSettingsFragment = new SettingsFragment();
 
-        //SettingsConfigurationDao dao = daoSession.getSettingsConfigurationDao();
-        //dao.insert(settingsConfiguration);
-
-        //List<SettingsConfiguration> list = dao.loadAll();
-        repo.add(new SettingsConfiguration("en","bg"));
-        List<SettingsConfiguration> list = repo.getAll();
-
-        Toast.makeText(this, list.get(0).getTranslateTo(), Toast.LENGTH_SHORT)
-                .show();
-//        settingsConfiguration.save();
-
-//        List<SettingsConfiguration> list = settingsConfiguration.listAll(SettingsConfiguration.class);
-
-//        Toast.makeText(this, list.get(0).getTranslateTo(), Toast.LENGTH_SHORT).show();
-    }
-
-    private FindAApplication getApp() {
-        return (FindAApplication) getApplication();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.settings_container, mSettingsFragment)
+                .commit();
     }
 }
