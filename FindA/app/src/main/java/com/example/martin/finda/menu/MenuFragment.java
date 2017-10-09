@@ -14,6 +14,7 @@ import com.example.martin.finda.base.BaseContracts;
 import com.example.martin.finda.camera.CameraActivity;
 import com.example.martin.finda.gallery.GalleryActivity;
 import com.example.martin.finda.R;
+import com.example.martin.finda.settings.SettingsActivity;
 
 
 /**
@@ -59,6 +60,9 @@ public class MenuFragment extends Fragment implements View.OnClickListener
                 break;
             case R.id.gallery:
                 navigate(getActivity(), GalleryActivity.class);
+                break;
+            case R.id.settings:
+                navigate(getActivity(), SettingsActivity.class);
                 break;
         }
     }
