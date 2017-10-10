@@ -12,6 +12,7 @@ public class SettingsContracts {
     public interface ISettingsPresenter extends BaseContracts.Presenter {
         SettingsConfiguration getSettingsConfiguration();
         String[] getTranslationLanguages();
+        void setSettingsConfiguration(SettingsConfiguration configuration);
     }
 
     public interface ISettingsView extends BaseContracts.View {

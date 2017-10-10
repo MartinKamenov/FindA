@@ -1,29 +1,34 @@
 package com.example.martin.finda.settings;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.martin.finda.FindAApplication;
 import com.example.martin.finda.R;
 import com.example.martin.finda.base.BaseContracts;
+import com.example.martin.finda.menu.MenuActivity;
 import com.example.martin.finda.models.SettingsConfiguration;
 import com.example.martin.finda.repositories.GenericCacheRepository;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SettingsFragment extends Fragment implements SettingsContracts.ISettingsView {
+public class SettingsFragment extends Fragment implements SettingsContracts.ISettingsView, View.OnClickListener {
 
 
     private SettingsContracts.ISettingsPresenter mPresenter;
     private View root;
+    private Button saveBtn;
+    private Button cancelBtn;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -37,6 +42,11 @@ public class SettingsFragment extends Fragment implements SettingsContracts.ISet
         mPresenter.subscribe(this);
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_settings, container, false);
+        saveBtn = root.findViewById(R.id.save_settings);
+        cancelBtn = root.findViewById(R.id.cancel_settings);
+        saveBtn.setOnClickListener(this);
+        cancelBtn.setOnClickListener(this);
+
         SettingsConfiguration configuration = mPresenter.getSettingsConfiguration();
         showSettings(configuration);
         return root;
@@ -58,11 +68,35 @@ public class SettingsFragment extends Fragment implements SettingsContracts.ISet
     }
 
     public void showSettings(SettingsConfiguration settingsConfiguration) {
+        SettingsConfiguration config = mPresenter.getSettingsConfiguration();
+        String from = config.getTranslateFrom();
+        String to = config.getTranslateTo();
 
         Spinner translateFromSpinner = root.findViewById(R.id.translate_from_spinner);
         translateFromSpinner.setAdapter(getAdapter());
         Spinner translateToSpinner = root.findViewById(R.id.translate_to_spinner);
         translateToSpinner.setAdapter(getAdapter());
+        translateToSpinner.setSelection(1);
+
+        short foundBoth = 0;
+
+        String[] languages = mPresenter.getTranslationLanguages();
+        int fromIndex = 0;
+        int toIndex = 0;
+
+        for (int i = 0; i < languages.length; i++) {
+            if(languages[i] == from) {
+                translateFromSpinner.setSelection(i);
+                foundBoth++;
+            }
+            if(languages[i] == to) {
+                translateToSpinner.setSelection(i);
+                foundBoth++;
+            }
+            if(foundBoth==2) {
+                break;
+            }
+        }
     }
 
     public ArrayAdapter<String> getAdapter() {
@@ -73,5 +107,26 @@ public class SettingsFragment extends Fragment implements SettingsContracts.ISet
         );
 
         return adapter;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.save_settings:
+                Spinner translateToSpinner = getActivity().findViewById(R.id.translate_from_spinner);
+                String from = translateToSpinner.getSelectedItem().toString();
+                Spinner translateFromSpinner = getActivity().findViewById(R.id.translate_to_spinner);
+                String to = translateFromSpinner.getSelectedItem().toString();
+                SettingsConfiguration config = new SettingsConfiguration(from, to);
+                mPresenter.setSettingsConfiguration(config);
+                Toast.makeText(getActivity(), "settings saved", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), MenuActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.cancel_settings:
+                Intent intent2 = new Intent(getActivity(), MenuActivity.class);
+                startActivity(intent2);
+                break;
+        }
     }
 }

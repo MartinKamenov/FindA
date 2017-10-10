@@ -36,4 +36,8 @@ public class GenericCacheRepository<T, K> {
         mDao.insert(obj);
         return obj;
     }
+
+    public void clearAll() {
+        mDao.deleteAll();
+    }
 }

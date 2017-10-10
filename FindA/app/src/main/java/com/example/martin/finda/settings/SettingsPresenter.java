@@ -36,11 +36,23 @@ public class SettingsPresenter implements SettingsContracts.ISettingsPresenter {
         return list.get(0);
     }
 
+    public void setSettingsConfiguration(SettingsConfiguration configuration) {
+        GenericCacheRepository<SettingsConfiguration, Long> repo =
+                this.mView.getApp().getSettingsConfigurationRepository();
+        repo.clearAll();
+        repo.add(configuration);
+    }
+
     public String[] getTranslationLanguages() {
         String[] languages = new String[] {
                 "en",
+                "fr",
+                "de",
+                "it",
+                "es",
                 "bg",
-                "es"
+                "pt",
+                "ru"
         };
 
         return languages;

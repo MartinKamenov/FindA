@@ -61,6 +61,16 @@
                 android:background="@android:drawable/btn_dropdown"
                 android:spinnerMode="dropdown" />
         </LinearLayout>
+        <Button
+            android:id="@+id/save_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save settings"/>
+        <Button
+            android:id="@+id/cancel_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel"/>
 
 
     </LinearLayout>
