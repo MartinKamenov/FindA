@@ -68,28 +68,25 @@ public class SettingsFragment extends Fragment implements SettingsContracts.ISet
     }
 
     public void showSettings(SettingsConfiguration settingsConfiguration) {
-        SettingsConfiguration config = mPresenter.getSettingsConfiguration();
-        String from = config.getTranslateFrom();
-        String to = config.getTranslateTo();
+        String from = settingsConfiguration.getTranslateFrom();
+        String to = settingsConfiguration.getTranslateTo();
 
         Spinner translateFromSpinner = root.findViewById(R.id.translate_from_spinner);
         translateFromSpinner.setAdapter(getAdapter());
         Spinner translateToSpinner = root.findViewById(R.id.translate_to_spinner);
         translateToSpinner.setAdapter(getAdapter());
-        translateToSpinner.setSelection(1);
 
         short foundBoth = 0;
 
         String[] languages = mPresenter.getTranslationLanguages();
-        int fromIndex = 0;
-        int toIndex = 0;
 
         for (int i = 0; i < languages.length; i++) {
-            if(languages[i] == from) {
+            String str = languages[i];
+            if(str.contains(from)) {
                 translateFromSpinner.setSelection(i);
                 foundBoth++;
             }
-            if(languages[i] == to) {
+            if(str.contains(to)) {
                 translateToSpinner.setSelection(i);
                 foundBoth++;
             }
