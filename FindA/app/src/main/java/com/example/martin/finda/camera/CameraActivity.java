@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -35,6 +37,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     final int RequestCameraPermissionId = 1001;
 
     private FloatingActionButton saveButton;
+    private GestureDetector detector;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -59,6 +62,14 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        detector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                CameraActivity.this.recreate();
+                return super.onDoubleTap(e);
+            }
+        });
 
         TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
         if (!textRecognizer.isOperational()) {
@@ -148,35 +159,13 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 Intent intent = new Intent(this, TextEditorActivity.class);
                 intent.putExtra("foundText", textView.getText());
                 startActivity(intent);
-                //cameraFocus(cameraSource, Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
                 break;
         }
     }
 
-    /* private static boolean cameraFocus(@NonNull CameraSource cameraSource, @NonNull String focusMode) {
-        Field[] declaredFields = CameraSource.class.getDeclaredFields();
-
-        for (Field field : declaredFields) {
-            if (field.getType() == Camera.class) {
-                field.setAccessible(true);
-                try {
-                    Camera camera = (Camera) field.get(cameraSource);
-                    if (camera != null) {
-                        Camera.Parameters params = camera.getParameters();
-                        params.setFocusMode(focusMode);
-                        camera.setParameters(params);
-                        return true;
-                    }
-
-                    return false;
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-
-                break;
-            }
-        }
-
-        return false;
-    }*/
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        detector.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
 }
