@@ -27,12 +27,23 @@ public class TextEditorPresenter_Tests {
     }
 
     @Test
-    public void SubscribeShould_AddView() {
+    public void SubscribeShould_AddsView() {
         // Arrange
         TextEditorPresenter presenter = new TextEditorPresenter(activity);
         // Act
         presenter.subscribe(view);
         // Assert
         Assert.assertSame(presenter.mView, view);
+    }
+
+    @Test
+    public void UnSubscribeShould_RemovesView() {
+        // Arrange
+        TextEditorPresenter presenter = new TextEditorPresenter(activity);
+        // Act
+        presenter.subscribe(view);
+        presenter.unsubscribe();
+        // Assert
+        Assert.assertEquals(presenter.mView, null);
     }
 }
