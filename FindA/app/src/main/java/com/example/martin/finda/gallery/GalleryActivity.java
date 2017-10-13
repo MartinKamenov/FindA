@@ -2,6 +2,7 @@ package com.example.martin.finda.gallery;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -50,19 +51,19 @@ public class GalleryActivity extends AppCompatActivity {
                     useImage(uri);
                 }
             }
-            super.onActivityResult(requestCode, resultCode, intent);
-
         }
+        super.onActivityResult(requestCode, resultCode, intent);
     }
 
-    void useImage(Uri uri)
+    private void useImage(Uri uri)
     {
 
-        Bitmap photo = decodeUriToBitmap(getApplicationContext(), uri);
+        Bitmap photo = decodeUriToBitmap(this, uri);
         if(photo==null) {
             Intent intent = new Intent(this, TextEditorActivity.class);
             intent.putExtra("foundText", "No text");
             startActivity(intent);
+            return;
         }
         pictureOcrView = new ImageView(getApplicationContext());
         pictureOcrView.setImageBitmap(photo);

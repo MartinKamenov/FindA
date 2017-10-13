@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.martin.finda.R;
+import com.example.martin.finda.http.HttpRequester;
 
 import java.io.IOException;
 
@@ -25,7 +26,10 @@ public class TextEditorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_text);
 
-        mTextEditorFragment = new TextEditorFragment();
+        /*mTextEditorFragment = new TextEditorFragment();
+        mHttpRequester = new HttpRequester();
+        mPresenter = new TextEditorPresenter(mHttpRequester);
+        mTextEditorFragment.setPresenter(mPresenter);*/
 
         getSupportFragmentManager()
                 .beginTransaction()
