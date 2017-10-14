@@ -57,4 +57,19 @@ public class SettingsPresenter implements SettingsContracts.ISettingsPresenter {
 
         return languages;
     }
+
+    public String[] getFullTranslationLanguages() {
+        String[] languages = new String[] {
+                "English",
+                "French",
+                "German",
+                "Italian",
+                "Spanish",
+                "Bulgarian",
+                "Portuguese",
+                "Russian"
+        };
+
+        return languages;
+    }
 }

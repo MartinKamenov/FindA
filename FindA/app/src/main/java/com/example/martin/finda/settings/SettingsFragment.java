@@ -71,6 +71,7 @@ public class SettingsFragment extends Fragment implements SettingsContracts.ISet
         String from = settingsConfiguration.getTranslateFrom();
         String to = settingsConfiguration.getTranslateTo();
 
+
         Spinner translateFromSpinner = root.findViewById(R.id.translate_from_spinner);
         translateFromSpinner.setAdapter(getAdapter());
         Spinner translateToSpinner = root.findViewById(R.id.translate_to_spinner);
@@ -78,10 +79,18 @@ public class SettingsFragment extends Fragment implements SettingsContracts.ISet
 
         short foundBoth = 0;
 
+        //String[] fullLanguages = mPresenter.getFullTranslationLanguages();
         String[] languages = mPresenter.getTranslationLanguages();
 
-        for (int i = 0; i < languages.length; i++) {
-            String str = languages[i];
+
+        Integer fullFromIndex = java.util.Arrays.asList(languages).indexOf(from);
+        Integer fullToIndex = java.util.Arrays.asList(languages).indexOf(to);
+        translateFromSpinner.setSelection(fullFromIndex);
+        translateToSpinner.setSelection(fullToIndex);
+
+
+        /*for (int i = 0; i < languages.length; i++) {
+            String str = fullLanguages[i];
             if(str.contains(from)) {
                 translateFromSpinner.setSelection(i);
                 foundBoth++;
@@ -93,14 +102,14 @@ public class SettingsFragment extends Fragment implements SettingsContracts.ISet
             if(foundBoth==2) {
                 break;
             }
-        }
+        }*/
     }
 
     public ArrayAdapter<String> getAdapter() {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_spinner_dropdown_item,
-                mPresenter.getTranslationLanguages()
+                mPresenter.getFullTranslationLanguages()
         );
 
         return adapter;
@@ -114,7 +123,28 @@ public class SettingsFragment extends Fragment implements SettingsContracts.ISet
                 String from = translateToSpinner.getSelectedItem().toString();
                 Spinner translateFromSpinner = getActivity().findViewById(R.id.translate_to_spinner);
                 String to = translateFromSpinner.getSelectedItem().toString();
-                SettingsConfiguration config = new SettingsConfiguration(from, to);
+                String shortFrom = "en";
+                String shortTo = "bg";
+                short foundBoth = 0;
+                String[] languages = mPresenter.getFullTranslationLanguages();
+                String[] shortLanguages = mPresenter.getTranslationLanguages();
+                for (int i = 0; i < languages.length; i++) {
+                    if(languages[i].contains(from)) {
+                        shortFrom = shortLanguages[i];
+                        foundBoth++;
+                    }
+                    if(languages[i].contains(to)) {
+                        shortTo = shortLanguages[i];
+                        foundBoth++;
+                    }
+                    if(foundBoth >= 2) {
+                        break;
+                    }
+                }
+
+
+
+                SettingsConfiguration config = new SettingsConfiguration(shortFrom, shortTo);
                 mPresenter.setSettingsConfiguration(config);
                 Toast.makeText(getActivity(), "settings saved", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), MenuActivity.class);
