@@ -1,6 +1,6 @@
 # FindA
 See the app:
-https://www.youtube.com/watch?v=nHaep1HBIwM
+https://www.youtube.com/watch?v=Qi6lTDBfVKg&feature=youtu.be
 
 Application for searching in picture or using camera to find text.
 
