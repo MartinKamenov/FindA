@@ -35,9 +35,8 @@
         android:id="@+id/save_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_save"
+        android:src="@android:drawable/ic_menu_camera"
         app:fabSize="normal"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:backgroundTint="#009999"/>
+        android:layout_alignParentEnd="true"/>
 </RelativeLayout>
