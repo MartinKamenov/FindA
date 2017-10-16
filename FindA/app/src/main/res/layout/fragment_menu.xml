@@ -53,14 +53,14 @@
             android:weightSum="2">
 
             <Button
-                android:id="@+id/saved_texts"
+                android:id="@+id/translator"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_weight="1"
                 android:background="#00cbff"
-                android:text="Saved\nTexts"
+                android:text="Translate\nText"
                 android:textColor="#fff"
                 android:textStyle="bold"
                 android:textSize="40px"/>

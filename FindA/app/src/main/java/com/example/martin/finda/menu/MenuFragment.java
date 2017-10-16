@@ -15,6 +15,7 @@ import com.example.martin.finda.camera.CameraActivity;
 import com.example.martin.finda.gallery.GalleryActivity;
 import com.example.martin.finda.R;
 import com.example.martin.finda.settings.SettingsActivity;
+import com.example.martin.finda.textEditor.TextEditorActivity;
 
 
 /**
@@ -27,7 +28,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener
 
     private Button cameraBtn;
     private Button galeryBtn;
-    private Button savedTextBtn;
+    private Button traslatorBtn;
     private Button settingsBtn;
     private MenuContracts.IMenuPresenter mPresenter;
 
@@ -61,6 +62,11 @@ public class MenuFragment extends Fragment implements View.OnClickListener
             case R.id.gallery:
                 navigate(getActivity(), GalleryActivity.class);
                 break;
+            case R.id.translator:
+                Intent intent = new Intent(getActivity(), TextEditorActivity.class);
+                intent.putExtra("foundText", "");
+                startActivity(intent);
+                break;
             case R.id.settings:
                 navigate(getActivity(), SettingsActivity.class);
                 break;
@@ -85,8 +91,8 @@ public class MenuFragment extends Fragment implements View.OnClickListener
         cameraBtn.setOnClickListener(this);
         galeryBtn = root.findViewById(R.id.gallery);
         galeryBtn.setOnClickListener(this);
-        savedTextBtn = root.findViewById(R.id.saved_texts);
-        savedTextBtn.setOnClickListener(this);
+        traslatorBtn = root.findViewById(R.id.translator);
+        traslatorBtn.setOnClickListener(this);
         settingsBtn = root.findViewById(R.id.settings);
         settingsBtn.setOnClickListener(this);
     }

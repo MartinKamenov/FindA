@@ -87,22 +87,6 @@ public class SettingsFragment extends Fragment implements SettingsContracts.ISet
         Integer fullToIndex = java.util.Arrays.asList(languages).indexOf(to);
         translateFromSpinner.setSelection(fullFromIndex);
         translateToSpinner.setSelection(fullToIndex);
-
-
-        /*for (int i = 0; i < languages.length; i++) {
-            String str = fullLanguages[i];
-            if(str.contains(from)) {
-                translateFromSpinner.setSelection(i);
-                foundBoth++;
-            }
-            if(str.contains(to)) {
-                translateToSpinner.setSelection(i);
-                foundBoth++;
-            }
-            if(foundBoth==2) {
-                break;
-            }
-        }*/
     }
 
     public ArrayAdapter<String> getAdapter() {

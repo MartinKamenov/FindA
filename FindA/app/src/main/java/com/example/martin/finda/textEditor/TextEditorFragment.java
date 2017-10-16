@@ -6,6 +6,8 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -144,6 +146,11 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
     public void translateText(String text) {
         if(text.length() == 0) {
             Toast.makeText(getActivity(), "Must have some text", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(!isOnline()) {
+            Toast.makeText(getActivity(), "Not connected to internet", Toast.LENGTH_SHORT).show();
+            return;
         }
         showSpinner();
         mPresenter.translateText(text);
@@ -159,5 +166,12 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
         button.setText("Translate text");
         EditText area = (EditText)root.findViewById(R.id.text_holder);
         area.setText(this.mPresenter.getOriginalText());
+    }
+
+    private boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 }
