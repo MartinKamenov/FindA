@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.martin.finda">
+    package="com.martin.kamenov.finda">
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -11,23 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".FindAApplication">
-        <activity android:name=".menu.MenuActivity">
+        android:name="com.martin.kamenov.finda.FindAApplication">
+        <activity android:name="com.martin.kamenov.finda.menu.MenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".camera.CameraActivity" />
-        <activity android:name=".textEditor.TextEditorActivity" />
-        <activity android:name=".gallery.GalleryActivity" />
-        <activity android:name=".settings.SettingsActivity"></activity>
+        <activity android:name="com.martin.kamenov.finda.camera.CameraActivity" />
+        <activity android:name="com.martin.kamenov.finda.textEditor.TextEditorActivity" />
+        <activity android:name="com.martin.kamenov.finda.gallery.GalleryActivity" />
+        <activity android:name="com.martin.kamenov.finda.settings.SettingsActivity"></activity>
         <meta-data android:name="DATABASE" android:value="findA.db" />
         <meta-data android:name="VERSION" android:value="1" />
         <meta-data android:name="QUERY_LOG" android:value="true" />
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="martin.example.com" />
     </application>
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
