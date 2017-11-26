@@ -9,6 +9,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,11 @@ import com.martin.kamenov.finda.FindAApplication;
 import com.martin.kamenov.finda.R;
 import com.martin.kamenov.finda.base.BaseContracts;
 import com.martin.kamenov.finda.menu.MenuActivity;
+
+import java.util.ArrayList;
+import java.util.Locale;
+
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -37,6 +44,7 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
     private Button copyToClipboardBtn;
     private Button translateBtn;
     private Button toMenuBtn;
+    private FloatingActionButton searchVoiceBtn;
     private final String googleUrl = "http://www.google.com/search?q=";
     private final String saveText = "Copied to clipboard";
 
@@ -73,11 +81,13 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
         this.copyToClipboardBtn = root.findViewById(R.id.clipboard_btn);
         this.translateBtn = root.findViewById(R.id.translate_btn);
         this.toMenuBtn = root.findViewById(R.id.menu_btn);
+        this.searchVoiceBtn = (FloatingActionButton)root.findViewById(R.id.search_voice_btn);
 
         googleSearchBtn.setOnClickListener(this);
         copyToClipboardBtn.setOnClickListener(this);
         translateBtn.setOnClickListener(this);
         toMenuBtn.setOnClickListener(this);
+        searchVoiceBtn.setOnClickListener(this);
     }
 
     @Override
@@ -100,6 +110,9 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
             case R.id.clipboard_btn:
                 copyTextToClipboard(text);
                 break;
+            case R.id.search_voice_btn:
+                searchVoiceText();
+                break;
             case R.id.translate_btn:
                 this.translateBtn = root.findViewById(R.id.translate_btn);
                 String textInButton = translateBtn.getText().toString();
@@ -121,6 +134,31 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
         startActivity(intent);
+    }
+
+    public void searchVoiceText() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        if(intent.resolveActivity(getActivity().getPackageManager())!=null) {
+            startActivityForResult(intent, 10);
+        } else {
+            Toast.makeText(getActivity(), "Your device don't support speech input", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 10:
+                if(resultCode==RESULT_OK&&data!=null) {
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    textContainer.setText(result.get(0));
+                }
+                break;
+
+        }
     }
 
     @Override
