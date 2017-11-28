@@ -16,17 +16,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1">
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
                 <EditText
                     android:background="#fff"
                     android:id="@+id/text_holder"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/search_voice_btn"
                     android:layout_width="wrap_content"
@@ -35,42 +32,11 @@
                     android:clickable="true"
                     android:text="above"
                     app:fabSize="mini"
+                    android:layout_alignParentRight="true"
                     app:srcCompat="@android:drawable/ic_btn_speak_now" />
-            </FrameLayout>
+            </RelativeLayout>
         </LinearLayout>
 
-        <!--<Button
-            android:id="@+id/translate_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Translate text"
-            android:background="@color/colorAccent"
-            android:textColor="#fff"
-            android:textStyle="bold"/>
-        <Button
-            android:id="@+id/clipboard_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Copy to clipboard"
-            android:background="#009999"
-            android:textColor="#fff"
-            android:textStyle="bold"/>
-        <Button
-            android:id="@+id/google_search_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Search in Google"
-            android:background="#00cbff"
-            android:textColor="#fff"
-            android:textStyle="bold"/>
-        <Button
-            android:id="@+id/menu_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Back to menu"
-            android:background="#ffd000"
-            android:textColor="#fff"
-            android:textStyle="bold"/>-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

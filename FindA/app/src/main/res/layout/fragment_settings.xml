@@ -61,6 +61,14 @@
                 android:background="@android:drawable/btn_dropdown"
                 android:spinnerMode="dropdown" />
         </LinearLayout>
+
+        <Switch
+            android:id="@+id/voice_recognition_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Voice recognision:"
+            android:textSize="55px"
+            android:textColor="#000"/>
         <Button
             android:id="@+id/save_settings"
             android:layout_width="match_parent"
