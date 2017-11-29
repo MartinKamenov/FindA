@@ -25,13 +25,13 @@ public class TextEditorPresenter implements TextEditorContracts.ITextEditorPrese
         this.httpRequester = new HttpRequester(this.activity);
     }
 
-    private SettingsConfiguration getSettingsConfiguration() {
+    public SettingsConfiguration getSettingsConfiguration() {
         GenericCacheRepository<SettingsConfiguration, Long> repo =
                 this.mView.getApp().getSettingsConfigurationRepository();
         List<SettingsConfiguration> list = repo.getAll();
 
         if(list.size()==0) {
-            repo.add(new SettingsConfiguration("en","bg"));
+            repo.add(new SettingsConfiguration("en","bg", true));
             list = repo.getAll();
         }
 

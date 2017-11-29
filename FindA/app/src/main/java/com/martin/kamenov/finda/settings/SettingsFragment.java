@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.martin.kamenov.finda.FindAApplication;
@@ -67,6 +68,7 @@ public class SettingsFragment extends Fragment implements SettingsContracts.ISet
     }
 
     public void showSettings(SettingsConfiguration settingsConfiguration) {
+        Boolean voiceRecognitionIsSwitched = settingsConfiguration.getVoiceRecognition();
         String from = settingsConfiguration.getTranslateFrom();
         String to = settingsConfiguration.getTranslateTo();
 
@@ -75,6 +77,7 @@ public class SettingsFragment extends Fragment implements SettingsContracts.ISet
         translateFromSpinner.setAdapter(getAdapter());
         Spinner translateToSpinner = root.findViewById(R.id.translate_to_spinner);
         translateToSpinner.setAdapter(getAdapter());
+        Switch voiceRecognitionSwitch = root.findViewById(R.id.voice_recognition_switch);
 
         short foundBoth = 0;
 
@@ -86,6 +89,7 @@ public class SettingsFragment extends Fragment implements SettingsContracts.ISet
         Integer fullToIndex = java.util.Arrays.asList(languages).indexOf(to);
         translateFromSpinner.setSelection(fullFromIndex);
         translateToSpinner.setSelection(fullToIndex);
+        voiceRecognitionSwitch.setChecked(voiceRecognitionIsSwitched);
     }
 
     public ArrayAdapter<String> getAdapter() {
@@ -124,10 +128,13 @@ public class SettingsFragment extends Fragment implements SettingsContracts.ISet
                         break;
                     }
                 }
+                // Switch
+                Switch voiceRecognitionStitch = root.findViewById(R.id.voice_recognition_switch);
+                boolean isChecked = voiceRecognitionStitch.isChecked();
+                Toast.makeText(getActivity(), Boolean.toString(isChecked), Toast.LENGTH_SHORT).show();
 
 
-
-                SettingsConfiguration config = new SettingsConfiguration(shortFrom, shortTo);
+                SettingsConfiguration config = new SettingsConfiguration(shortFrom, shortTo, isChecked);
                 mPresenter.setSettingsConfiguration(config);
                 Toast.makeText(getActivity(), "settings saved", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), MenuActivity.class);

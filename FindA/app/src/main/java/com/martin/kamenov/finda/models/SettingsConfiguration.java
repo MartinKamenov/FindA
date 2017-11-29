@@ -21,21 +21,26 @@ public class SettingsConfiguration {
     @Property(nameInDb = "translateFrom")
     private String translateFrom;
 
+    @Property(nameInDb = "voiceRecognition")
+    private boolean voiceRecognition;
+
     public SettingsConfiguration() {
 
     }
 
-    public SettingsConfiguration(String translateFrom, String translateTo) {
+    public SettingsConfiguration(String translateFrom, String translateTo, boolean voiceRecognition) {
         setTranslateFrom(translateFrom);
         setTranslateTo(translateTo);
+        setVoiceRecognition(voiceRecognition);
     }
 
-    @Generated(hash = 948150374)
-    public SettingsConfiguration(Long id, String translateTo,
-            String translateFrom) {
+    @Generated(hash = 1863476006)
+    public SettingsConfiguration(Long id, String translateTo, String translateFrom,
+            boolean voiceRecognition) {
         this.id = id;
         this.translateTo = translateTo;
         this.translateFrom = translateFrom;
+        this.voiceRecognition = voiceRecognition;
     }
 
     public String getTranslateTo() {
@@ -60,5 +65,13 @@ public class SettingsConfiguration {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public boolean getVoiceRecognition() {
+        return this.voiceRecognition;
+    }
+
+    public void setVoiceRecognition(boolean voiceRecognition) {
+        this.voiceRecognition = voiceRecognition;
     }
 }

@@ -29,7 +29,7 @@ public class SettingsPresenter implements SettingsContracts.ISettingsPresenter {
         List<SettingsConfiguration> list = repo.getAll();
 
         if(list.size()==0) {
-            repo.add(new SettingsConfiguration("en","bg"));
+            repo.add(new SettingsConfiguration("en","bg", true));
             list = repo.getAll();
         }
 

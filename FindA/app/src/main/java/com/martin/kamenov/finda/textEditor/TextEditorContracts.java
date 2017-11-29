@@ -2,6 +2,7 @@ package com.martin.kamenov.finda.textEditor;
 
 import com.martin.kamenov.finda.FindAApplication;
 import com.martin.kamenov.finda.base.BaseContracts;
+import com.martin.kamenov.finda.models.SettingsConfiguration;
 
 /**
  * Created by Martin on 4.10.2017 г..
@@ -14,6 +15,8 @@ public class TextEditorContracts {
         String getOriginalText();
 
         void setOriginalText(String text);
+
+        SettingsConfiguration getSettingsConfiguration();
     }
 
     public interface ITextEditorView extends BaseContracts.View {

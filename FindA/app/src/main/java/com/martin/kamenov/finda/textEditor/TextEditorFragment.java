@@ -23,6 +23,7 @@ import com.martin.kamenov.finda.FindAApplication;
 import com.martin.kamenov.finda.R;
 import com.martin.kamenov.finda.base.BaseContracts;
 import com.martin.kamenov.finda.menu.MenuActivity;
+import com.martin.kamenov.finda.models.SettingsConfiguration;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -60,11 +61,13 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
         mPresenter.subscribe(this);
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_edit_text, container, false);
+
         setListeners();
         textContainer = (EditText) root.findViewById(R.id.text_holder);
         if(getActivity().getIntent().hasExtra("foundText")) {
             textContainer.setText(getActivity().getIntent().getExtras().getString("foundText"));
         }
+        // textContainer.requestFocus();
 
         return root;
     }
@@ -82,12 +85,17 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
         this.translateBtn = root.findViewById(R.id.translate_btn);
         this.toMenuBtn = root.findViewById(R.id.menu_btn);
         this.searchVoiceBtn = (FloatingActionButton)root.findViewById(R.id.search_voice_btn);
+        SettingsConfiguration settingsConfiguration = mPresenter.getSettingsConfiguration();
+        if(settingsConfiguration.getVoiceRecognition()) {
+            searchVoiceBtn.setOnClickListener(this);
+        } else {
+            searchVoiceBtn.setVisibility(View.GONE);
+        }
 
         googleSearchBtn.setOnClickListener(this);
         copyToClipboardBtn.setOnClickListener(this);
         translateBtn.setOnClickListener(this);
         toMenuBtn.setOnClickListener(this);
-        searchVoiceBtn.setOnClickListener(this);
     }
 
     @Override
