@@ -13,7 +13,6 @@ import android.widget.Button;
 
 import com.martin.kamenov.finda.base.BaseContracts;
 import com.martin.kamenov.finda.camera.CameraActivity;
-import com.martin.kamenov.finda.gallery.GalleryActivity;
 import com.martin.kamenov.finda.R;
 import com.martin.kamenov.finda.gallery.GalleryScanner;
 import com.martin.kamenov.finda.settings.SettingsActivity;
@@ -67,7 +66,6 @@ public class MenuFragment extends Fragment implements View.OnClickListener
                 navigate(getActivity(), CameraActivity.class);
                 break;
             case R.id.gallery:
-                // navigate(getActivity(), GalleryActivity.class);
                 scanFromGallery();
                 break;
             case R.id.translator:
