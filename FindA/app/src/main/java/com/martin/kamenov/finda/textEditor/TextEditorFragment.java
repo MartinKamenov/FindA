@@ -64,10 +64,16 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
 
         setListeners();
         textContainer = (EditText) root.findViewById(R.id.text_holder);
+        String foundText = "";
         if(getActivity().getIntent().hasExtra("foundText")) {
-            textContainer.setText(getActivity().getIntent().getExtras().getString("foundText"));
+            foundText = getActivity().getIntent().getExtras().getString("foundText");
         }
-        // textContainer.requestFocus();
+        if(foundText.length()==0) {
+            // TO DO:
+            // SHOW KEYBOARD IF THERE IS NO TEXT
+            textContainer.requestFocus();
+        }
+        textContainer.setText(foundText);
 
         return root;
     }

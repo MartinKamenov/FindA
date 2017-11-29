@@ -37,6 +37,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
     private FloatingActionButton saveButton;
     private GestureDetector detector;
+    private boolean textHasCHanged;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -89,6 +90,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         cameraView = (SurfaceView) findViewById(R.id.surface_view);
         textView = (TextView) findViewById(R.id.text_view);
         saveButton = (FloatingActionButton) findViewById(R.id.save_text);
+        textHasCHanged = false;
 
         saveButton.setOnClickListener(this);
 
@@ -143,6 +145,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                             }
 
                             textView.setText(stringBuilder.toString());
+                            textHasCHanged = true;
                         }
                     });
                 }
@@ -156,7 +159,13 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.save_text:
                 Toast.makeText(this, textView.getText(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, TextEditorActivity.class);
-                intent.putExtra("foundText", textView.getText());
+                String foundText = textView.getText().toString();
+                if(textHasCHanged) {
+                    intent.putExtra("foundText", foundText);
+                } else {
+                    intent.putExtra("foundText", "");
+                }
+
                 startActivity(intent);
                 break;
         }

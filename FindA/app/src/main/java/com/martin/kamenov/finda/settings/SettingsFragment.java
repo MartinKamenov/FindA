@@ -131,8 +131,6 @@ public class SettingsFragment extends Fragment implements SettingsContracts.ISet
                 // Switch
                 Switch voiceRecognitionStitch = root.findViewById(R.id.voice_recognition_switch);
                 boolean isChecked = voiceRecognitionStitch.isChecked();
-                Toast.makeText(getActivity(), Boolean.toString(isChecked), Toast.LENGTH_SHORT).show();
-
 
                 SettingsConfiguration config = new SettingsConfiguration(shortFrom, shortTo, isChecked);
                 mPresenter.setSettingsConfiguration(config);
