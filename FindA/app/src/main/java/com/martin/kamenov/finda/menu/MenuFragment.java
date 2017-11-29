@@ -3,6 +3,7 @@ package com.martin.kamenov.finda.menu;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,8 +15,11 @@ import com.martin.kamenov.finda.base.BaseContracts;
 import com.martin.kamenov.finda.camera.CameraActivity;
 import com.martin.kamenov.finda.gallery.GalleryActivity;
 import com.martin.kamenov.finda.R;
+import com.martin.kamenov.finda.gallery.GalleryScanner;
 import com.martin.kamenov.finda.settings.SettingsActivity;
 import com.martin.kamenov.finda.textEditor.TextEditorActivity;
+
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -30,6 +34,8 @@ public class MenuFragment extends Fragment implements View.OnClickListener
     private Button galeryBtn;
     private Button traslatorBtn;
     private Button settingsBtn;
+    private static final int SELECT_PHOTO = 23;
+    private GalleryScanner galleryScanner;
     private MenuContracts.IMenuPresenter mPresenter;
 
     public MenuFragment() {
@@ -42,6 +48,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener
                              Bundle savedInstanceState) {
         this.setPresenter(new MenuPresenter());
         mPresenter.subscribe(this);
+        galleryScanner = new GalleryScanner(getActivity());
         root = inflater.inflate(R.layout.fragment_menu, container, false);
         setListeners();
         return root;
@@ -60,7 +67,8 @@ public class MenuFragment extends Fragment implements View.OnClickListener
                 navigate(getActivity(), CameraActivity.class);
                 break;
             case R.id.gallery:
-                navigate(getActivity(), GalleryActivity.class);
+                // navigate(getActivity(), GalleryActivity.class);
+                scanFromGallery();
                 break;
             case R.id.translator:
                 Intent intent = new Intent(getActivity(), TextEditorActivity.class);
@@ -95,5 +103,27 @@ public class MenuFragment extends Fragment implements View.OnClickListener
         traslatorBtn.setOnClickListener(this);
         settingsBtn = root.findViewById(R.id.settings);
         settingsBtn.setOnClickListener(this);
+    }
+
+    public void scanFromGallery() {
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, SELECT_PHOTO);
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == SELECT_PHOTO) {
+
+            if (resultCode == RESULT_OK) {
+                if (intent != null) {
+                    // Get the URI of the selected file
+                    final Uri uri = intent.getData();
+                    galleryScanner.useImage(uri);
+                }
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, intent);
     }
 }
