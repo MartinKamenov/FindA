@@ -15,8 +15,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.martin.kamenov.finda.FindAApplication;
@@ -48,6 +51,7 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
     private FloatingActionButton searchVoiceBtn;
     private final String googleUrl = "http://www.google.com/search?q=";
     private final String saveText = "Copied to clipboard";
+    private LinearLayout pageContainer;
 
     public TextEditorFragment() {
         // Required empty public constructor
@@ -64,6 +68,10 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
 
         setListeners();
         textContainer = (EditText) root.findViewById(R.id.text_holder);
+        pageContainer = (LinearLayout) root.findViewById(R.id.text_editor_container);
+        textContainer.setOnClickListener(this);
+        pageContainer.setOnClickListener(this);
+
         String foundText = "";
         if(getActivity().getIntent().hasExtra("foundText")) {
             foundText = getActivity().getIntent().getExtras().getString("foundText");
@@ -72,6 +80,7 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
             // TO DO:
             // SHOW KEYBOARD IF THERE IS NO TEXT
             textContainer.requestFocus();
+            getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         }
         textContainer.setText(foundText);
 
@@ -121,6 +130,12 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
             case R.id.google_search_btn:
                 searchInGoogle(text);
                 break;
+            case R.id.text_holder:
+                focusOnTextContainer();
+                break;
+            case R.id.text_editor_container:
+                focusOnTextContainer();
+                break;
             case R.id.clipboard_btn:
                 copyTextToClipboard(text);
                 break;
@@ -140,6 +155,11 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
                 returnToMenu();
                 break;
         }
+    }
+
+    private void focusOnTextContainer() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(textContainer, InputMethodManager.SHOW_IMPLICIT);
     }
 
     @Override
