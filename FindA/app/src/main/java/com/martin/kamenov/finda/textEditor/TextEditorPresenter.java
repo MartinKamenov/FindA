@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 public class TextEditorPresenter implements TextEditorContracts.ITextEditorPresenter {
-    public final String Url = "https://fierce-crag-61509.herokuapp.com/translate";
+    public final String Url = "https://mk-translator.herokuapp.com/translate";
     private String originalText;
     private final HttpRequester httpRequester;
     public TextEditorContracts.ITextEditorView mView;
