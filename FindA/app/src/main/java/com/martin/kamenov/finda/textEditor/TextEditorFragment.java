@@ -99,7 +99,7 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
         this.copyToClipboardBtn = root.findViewById(R.id.clipboard_btn);
         this.translateBtn = root.findViewById(R.id.translate_btn);
         this.toMenuBtn = root.findViewById(R.id.menu_btn);
-        this.searchVoiceBtn = (FloatingActionButton)root.findViewById(R.id.search_voice_btn);
+        this.searchVoiceBtn = root.findViewById(R.id.search_voice_btn);
         SettingsConfiguration settingsConfiguration = mPresenter.getSettingsConfiguration();
         if(settingsConfiguration.getVoiceRecognition()) {
             searchVoiceBtn.setOnClickListener(this);
@@ -205,6 +205,7 @@ public class TextEditorFragment extends Fragment implements TextEditorContracts.
 
     private void returnToMenu() {
         Intent intent = new Intent(getActivity(), MenuActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 

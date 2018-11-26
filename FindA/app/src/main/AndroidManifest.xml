@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.martin.kamenov.finda.camera.CameraActivity" />
-        <activity android:name="com.martin.kamenov.finda.textEditor.TextEditorActivity" />
+        <activity android:name="com.martin.kamenov.finda.textEditor.TextEditorActivity"/>
         <activity android:name="com.martin.kamenov.finda.settings.SettingsActivity"></activity>
         <meta-data android:name="DATABASE" android:value="findA.db" />
         <meta-data android:name="VERSION" android:value="1" />
