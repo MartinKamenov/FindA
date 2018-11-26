@@ -19,30 +19,32 @@
             android:weightSum="2">
 
             <Button
+                android:drawableLeft="@android:drawable/ic_menu_camera"
+                android:theme="@style/CameraButton"
                 android:id="@+id/camera"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
                 android:text="Camera"
                 android:textColor="#fff"
                 android:textStyle="bold"
-                android:textSize="40px"/>
+                android:textSize="20sp"/>
 
             <Button
+                android:drawableLeft="@android:drawable/ic_menu_gallery"
+                android:theme="@style/GalleryButton"
                 android:id="@+id/gallery"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_weight="1"
-                android:background="#009999"
                 android:text="Import from\nGallery"
                 android:textColor="#fff"
                 android:textStyle="bold"
-                android:textSize="40px"/>
+                android:textSize="20sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -53,30 +55,32 @@
             android:weightSum="2">
 
             <Button
+                android:drawableLeft="@android:drawable/ic_btn_speak_now"
+                android:theme="@style/TranslateButton"
                 android:id="@+id/translator"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_weight="1"
-                android:background="#00cbff"
                 android:text="Translate\nText"
                 android:textColor="#fff"
                 android:textStyle="bold"
-                android:textSize="40px"/>
+                android:textSize="20sp"/>
 
             <Button
+                android:drawableLeft="@android:drawable/ic_menu_manage"
+                android:theme="@style/SettingsButton"
                 android:id="@+id/settings"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_weight="1"
-                android:background="#ffd000"
                 android:text="Settings"
                 android:textColor="#fff"
                 android:textStyle="bold"
-                android:textSize="40px"/>
+                android:textSize="20sp"/>
         </LinearLayout>
     </LinearLayout>
 

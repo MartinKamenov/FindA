@@ -8,4 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CameraButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">#fff</item>
+        <item name="colorButtonNormal">@color/firstMainColor</item>
+    </style>
+    <style name="GalleryButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">#fff</item>
+        <item name="colorButtonNormal">@color/secondMainColor</item>
+    </style>
+    <style name="TranslateButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">#fff</item>
+        <item name="colorButtonNormal">@color/thirdMainColor</item>
+    </style>
+    <style name="SettingsButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">#fff</item>
+        <item name="colorButtonNormal">@color/forthMainColor</item>
+    </style>
+
 </resources>
