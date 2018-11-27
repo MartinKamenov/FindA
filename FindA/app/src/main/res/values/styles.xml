@@ -24,5 +24,13 @@
         <item name="colorControlHighlight">#fff</item>
         <item name="colorButtonNormal">@color/forthMainColor</item>
     </style>
+    <style name="SuccessButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">#fff</item>
+        <item name="colorButtonNormal">#5BB85D</item>
+    </style>
+    <style name="DangerButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">#fff</item>
+        <item name="colorButtonNormal">#DB524B</item>
+    </style>
 
 </resources>

@@ -5,83 +5,89 @@
     tools:context="com.martin.kamenov.finda.settings.SettingsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="#fffdb2">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-
-            android:text="Settings"
-            android:textSize="60px"
-            android:textColor="#000"
-            android:textStyle="bold"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
+            android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Translate from:"
-                android:textSize="55px"
+                android:layout_gravity="center"
+
+                android:text="Settings"
+                android:textSize="30sp"
+                android:textColor="#000"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Translate from:"
+                    android:textSize="20sp"
+                    android:textColor="#000"/>
+
+                <Spinner
+                    android:id="@+id/translate_from_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Translate to:"
+                    android:textSize="20sp"
+                    android:textColor="#000"/>
+
+                <Spinner
+                    android:id="@+id/translate_to_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown" />
+            </LinearLayout>
+            <Switch
+                android:id="@+id/voice_recognition_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Voice recognision:"
+                android:textSize="20sp"
                 android:textColor="#000"/>
-
-            <Spinner
-                android:id="@+id/translate_from_spinner"
-                android:layout_width="wrap_content"
+            <Button
+                android:drawableLeft="@android:drawable/checkbox_on_background"
+                android:textColor="#ffffff"
+                android:theme="@style/SuccessButton"
+                android:id="@+id/save_settings"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:drawable/btn_dropdown"
-                android:spinnerMode="dropdown" />
+                android:text="Save settings"/>
+            <Button
+                android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel"
+                android:textColor="#ffffff"
+                android:theme="@style/DangerButton"
+                android:id="@+id/cancel_settings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cancel"/>
         </LinearLayout>
+    </ScrollView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="4">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Translate to:"
-                android:textSize="55px"
-                android:textColor="#000"/>
-
-            <Spinner
-                android:id="@+id/translate_to_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:drawable/btn_dropdown"
-                android:spinnerMode="dropdown" />
-        </LinearLayout>
-
-        <Switch
-            android:id="@+id/voice_recognition_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Voice recognision:"
-            android:textSize="55px"
-            android:textColor="#000"/>
-        <Button
-            android:id="@+id/save_settings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save settings"/>
-        <Button
-            android:id="@+id/cancel_settings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cancel"/>
-
-
-    </LinearLayout>
 
 
 </FrameLayout>
