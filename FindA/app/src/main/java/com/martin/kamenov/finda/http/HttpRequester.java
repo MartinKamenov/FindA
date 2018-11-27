@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.martin.kamenov.finda.R;
+import com.martin.kamenov.finda.http.contracts.PostHandler;
 import com.martin.kamenov.finda.textEditor.TextEditorActivity;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class HttpRequester {
         this.client = new OkHttpClient();
     }
 
-    public void post(String url, String bodyText) {
+    public void post(final PostHandler handler, String url, String bodyText) {
         JSON = MediaType.parse("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(JSON, bodyText);
         Request request = new Request.Builder()
@@ -44,33 +45,12 @@ public class HttpRequester {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
+                handler.handleError(call, e);
             }
 
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
-                handlePost(response);
-            }
-        });
-    }
-
-    public void handlePost(final Response response) {
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    EditText area = (EditText)activity.findViewById(R.id.text_holder);
-                    area.setText(response.body().string());
-                    Button button = (Button)activity.findViewById(R.id.translate_btn);
-                    button.setText("Show original");
-                    Toast.makeText(activity, "Text is translated", Toast.LENGTH_SHORT).show();
-                    activity.findViewById(R.id.spinner_container).setVisibility(View.GONE);
-                    activity.findViewById(R.id.text_editor_container).setVisibility(View.VISIBLE);
-                } catch (IOException e) {
-                    Toast.makeText(activity, "something went wrong!", Toast.LENGTH_SHORT).show();
-                    activity.findViewById(R.id.spinner_container).setVisibility(View.GONE);
-                    activity.findViewById(R.id.text_editor_container).setVisibility(View.VISIBLE);
-                }
+                handler.handlePost(call, response);
             }
         });
     }
