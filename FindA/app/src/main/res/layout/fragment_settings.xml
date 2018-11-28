@@ -23,45 +23,31 @@
                 android:textColor="#000"
                 android:textStyle="bold"/>
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Translate from:"
+                android:textSize="20sp"
+                android:textColor="#000"/>
+
+            <Spinner
+                android:id="@+id/translate_from_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:fontFamily="sans-serif-condensed"
+                android:spinnerMode="dropdown" /><TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Translate to:"
+                android:textSize="20sp"
+                android:textColor="#000"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Translate from:"
-                    android:textSize="20sp"
-                    android:textColor="#000"/>
-
-                <Spinner
-                    android:id="@+id/translate_from_spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/btn_dropdown"
-                    android:spinnerMode="dropdown" />
-            </LinearLayout>
-            <LinearLayout
+            <Spinner
+                android:id="@+id/translate_to_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="4">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Translate to:"
-                    android:textSize="20sp"
-                    android:textColor="#000"/>
-
-                <Spinner
-                    android:id="@+id/translate_to_spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/btn_dropdown"
-                    android:spinnerMode="dropdown" />
-            </LinearLayout>
+                android:spinnerMode="dropdown"
+                android:fontFamily="sans-serif-condensed"/>
             <Switch
                 android:id="@+id/voice_recognition_switch"
                 android:layout_width="wrap_content"

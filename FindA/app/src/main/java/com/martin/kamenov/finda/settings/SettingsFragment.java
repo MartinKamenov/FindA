@@ -95,7 +95,7 @@ public class SettingsFragment extends Fragment implements SettingsContracts.ISet
     public ArrayAdapter<String> getAdapter() {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 getActivity(),
-                android.R.layout.simple_spinner_dropdown_item,
+                R.layout.spinner_item_yellow,
                 mPresenter.getFullTranslationLanguages()
         );
 
