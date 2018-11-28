@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -62,7 +63,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         detector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDoubleTap(MotionEvent e) {
@@ -71,11 +71,12 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
-        TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
-        if (!textRecognizer.isOperational()) {
-            Log.w("Main Activity", "Detector dependencies are not yet available");
-            return;
+        final TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
+
+        if(!textRecognizer.isOperational()) {
+            Toast.makeText(this, "Not all dependencies are loaded.", Toast.LENGTH_SHORT).show();
         }
+
         cameraSource = new CameraSource.Builder(getApplicationContext(), textRecognizer)
                 .setFacing(CameraSource.CAMERA_FACING_BACK)
                 .setRequestedPreviewSize(1280, 1024)
