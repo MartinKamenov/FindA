@@ -10,17 +10,33 @@
 
     <style name="CameraButton" parent="Theme.AppCompat.Light">
         <item name="colorControlHighlight">#fff</item>
-        <item name="colorButtonNormal">@color/firstMainColor</item>
+        <item name="colorButtonNormal">@color/firstMainColorWeak</item>
     </style>
     <style name="GalleryButton" parent="Theme.AppCompat.Light">
         <item name="colorControlHighlight">#fff</item>
-        <item name="colorButtonNormal">@color/secondMainColor</item>
+        <item name="colorButtonNormal">@color/secondMainColorWeak</item>
     </style>
     <style name="TranslateButton" parent="Theme.AppCompat.Light">
         <item name="colorControlHighlight">#fff</item>
-        <item name="colorButtonNormal">@color/thirdMainColor</item>
+        <item name="colorButtonNormal">@color/thirdMainColorWeak</item>
     </style>
     <style name="SettingsButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">#fff</item>
+        <item name="colorButtonNormal">@color/forthMainColorWeak</item>
+    </style>
+    <style name="TranslateButtonText" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">#fff</item>
+        <item name="colorButtonNormal">@color/firstMainColor</item>
+    </style>
+    <style name="CopyButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">#fff</item>
+        <item name="colorButtonNormal">@color/secondMainColor</item>
+    </style>
+    <style name="SearchButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">#fff</item>
+        <item name="colorButtonNormal">@color/thirdMainColor</item>
+    </style>
+    <style name="MenuButton" parent="Theme.AppCompat.Light">
         <item name="colorControlHighlight">#fff</item>
         <item name="colorButtonNormal">@color/forthMainColor</item>
     </style>

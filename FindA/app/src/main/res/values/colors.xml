@@ -3,6 +3,10 @@
     <color name="colorPrimary">#262626</color>
     <color name="colorPrimaryDark">#1a1a1a</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="firstMainColorWeak">#aaFF4081</color>
+    <color name="secondMainColorWeak">#aa009999</color>
+    <color name="thirdMainColorWeak">#aa00cbff</color>
+    <color name="forthMainColorWeak">#aaffd000</color>
     <color name="firstMainColor">#FF4081</color>
     <color name="secondMainColor">#009999</color>
     <color name="thirdMainColor">#00cbff</color>

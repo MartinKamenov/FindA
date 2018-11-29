@@ -55,7 +55,7 @@
 
                 <Button
                     android:drawableLeft="@android:drawable/ic_menu_info_details"
-                    android:theme="@style/CameraButton"
+                    android:theme="@style/TranslateButtonText"
                     android:id="@+id/translate_btn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -68,7 +68,7 @@
 
                 <Button
                     android:drawableLeft="@android:drawable/ic_menu_save"
-                    android:theme="@style/GalleryButton"
+                    android:theme="@style/CopyButton"
                     android:id="@+id/clipboard_btn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -89,7 +89,7 @@
 
                 <Button
                     android:drawableLeft="@android:drawable/ic_menu_search"
-                    android:theme="@style/TranslateButton"
+                    android:theme="@style/SearchButton"
                     android:id="@+id/google_search_btn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -102,7 +102,7 @@
 
                 <Button
                     android:drawableLeft="@android:drawable/arrow_down_float"
-                    android:theme="@style/SettingsButton"
+                    android:theme="@style/MenuButton"
                     android:id="@+id/menu_btn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"

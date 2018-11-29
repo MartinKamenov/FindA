@@ -74,7 +74,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         final TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
 
         if(!textRecognizer.isOperational()) {
-            Toast.makeText(this, "Not all dependencies are loaded.", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, "Warning: Not all dependencies are loaded.", Toast.LENGTH_SHORT).show();
         }
 
         cameraSource = new CameraSource.Builder(getApplicationContext(), textRecognizer)

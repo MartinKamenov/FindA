@@ -45,6 +45,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().getWindow().setBackgroundDrawableResource(R.drawable.wallpapper);
         this.setPresenter(new MenuPresenter());
         mPresenter.subscribe(this);
         galleryScanner = new GalleryScanner(getActivity());
